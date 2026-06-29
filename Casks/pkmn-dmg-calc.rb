@@ -1,0 +1,32 @@
+cask "pkmn-dmg-calc" do
+  version :latest
+  sha256 :no_check
+
+  url "https://github.com/sanjayb-28/damage-calc/releases/latest/download/PKMN.DMG.Calc_universal.dmg"
+  name "PKMN DMG Calc"
+  desc "Desktop Pokemon damage calculator"
+  homepage "https://github.com/sanjayb-28/damage-calc"
+
+  auto_updates true
+  depends_on macos: ">= :catalina"
+
+  app "PKMN DMG Calc.app"
+
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: [
+                     "-dr",
+                     "com.apple.quarantine",
+                     "#{appdir}/PKMN DMG Calc.app",
+                   ],
+                   sudo: false
+  end
+
+  zap trash: [
+    "~/Library/Application Support/dev.sanjaybaskaran.pkmn-dmg-calc",
+    "~/Library/Caches/dev.sanjaybaskaran.pkmn-dmg-calc",
+    "~/Library/Preferences/dev.sanjaybaskaran.pkmn-dmg-calc.plist",
+    "~/Library/Saved Application State/dev.sanjaybaskaran.pkmn-dmg-calc.savedState",
+    "~/Library/WebKit/dev.sanjaybaskaran.pkmn-dmg-calc",
+  ]
+end
