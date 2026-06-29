@@ -8,7 +8,7 @@ cask "pkmn-dmg-calc" do
   homepage "https://github.com/sanjayb-28/damage-calc"
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: :catalina
 
   app "PKMN DMG Calc.app"
 
